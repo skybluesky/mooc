@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .section {
+            overflow: hidden;
+            position: relative;
+        }
+        .logo {
+            height: 186px;
+            background: url("./images/logo.png") center center no-repeat;
+            margin: 80px 0 ;
+        }
+        .text {
+            text-align: center;
+            margin: 50px 0 ;
+        }
+        .text img {
+            margin: 0 40px;
+            opacity: 0;
+
+        }
+        .other {
+            margin: 0 auto;
+            background: url("./images/info_1.png") center center no-repeat;
+            height: 42px;
+        }
+        /*第一屏动画*/
+        .current  .text  img {
+            margin: 0 5px;
+            opacity: 1;
+            transition: all 1s ease-out ;
+        }
+        /*第2屏*/
+        .section:nth-child(2) {
+            padding: 0 150px;
+        }
+        .main  {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .left {
+            width: 424px;
+            height: 498px;
+        }
+        .left img {
+            display: inline-block;
+            float: left;
+            opacity: 0;
+        }
+        .right {
+            width: 635px;
+            height: 309px;
+            background: url(./images/info_2.png);
+        }
+        .left img:nth-child(1){
+            transform: translate(-120px, 215px) rotate(90deg);
+        }
+        .left img:nth-child(2){
+            transform: translate(-35px, -78px) rotate(90deg);
+        }
+        .left img:nth-child(3){
+            transform: translate(-11px, -12px) rotate(90deg);
+        }
+        .left img:nth-child(4){
+            transform: translate(-115px, -78px) rotate(90deg);
+        }
+        .left img:nth-child(5){
+            transform: translate(305px, -78px) rotate(90deg);
+        }
+        .left img:nth-child(6){
+            transform: translate(70px, 125px) rotate(90deg);
+        }
+        .left img:nth-child(7){
+            transform: translate(-51px, 78px) rotate(90deg);
+        }
+        .left img:nth-child(9){
+            transform: translate(35px, 178px) rotate(90deg);
+        }
+        .left img:nth-child(8){
+            transform: translate(135px, 78px) rotate(90deg);
+        }
+        /*第二屏动画*/
+        .current .left img {
+            transform: translate(0px, 0px) rotate(0deg);
+            opacity: 1;
+            transition: all 1s ease-out;
+        }
+        /*第三屏*/
+        .third {
+            padding: 0 70px;
+        }
+        .third > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .info {
+            width: 631px;
+            height: 278px;
+            background: url("./images/info_3.png");
+        }
+        .circle {
+            width: 453px;
+            height: 449px;
+            background: url("./images/circle.png");
+        }
+        .rocket {
+            width: 204px;
+            height: 204px;
+            position: absolute;
+            background: url("./images/rocket.png");
+            bottom: 0px;
+            left: 204px;
+        }
+        .current .rocket{
+            transition: all 1s ease-in-out;
+            transform: translate(300%,-150%);
+        }
+        /*第4屏*/
+        .fourth {
+            padding: 0 100px;
+        }
+        .fourth >div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .input {
+            width: 529px;
+            height: 300px;
+            position: relative;
+            left: -100%;
+        }
+        .search {
+            background: url("./images/search.png");
+            width: 100%;
+            height: 66px;
+        }
+        .s-text {
+            width: 0px;
+            height: 22px;
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            background: url("./images/key.png");
+        }
+        .box {
+            width: 100%;
+            height: 372px;
+            position: absolute;
+            top: 53px;
+            left: 0;
+            overflow: hidden;
+        }
+        .content {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: -100%;
+            left: 0;
+            background: url("./images/result.png");
+        }
+        .info2 {
+            width: 612px;
+            height: 300px;
+            background: url("./images/info_4.png");
+        }
+        /*第四屏动画*/
+        .current .input {
+            transition: all 0.8s ease-in-out;
+            left : 0;
+        }
+        .current .s-text {
+            animation: animateH 1.5s 0.8s steps(5) forwards ;
+        }
+        @keyframes animateH {
+            0% {
+                width: 0px;
+            }
+            100% {
+                width: 99px;
+            }
+        }
+        .current .content {
+            transition: all 0.7s 3s ease-in-out;
+            top : 0;
+        }
+        /*第五屏*/
+        .fifth >div {
+            display: flex;
+            flex-direction: column;
+        }
+        .fifth .info {
+            width: 100%;
+            height: 134px;
+            padding: 30px 0;
+            background: url("./images/info_5.png") center center no-repeat;
+        }
+        .lulanqi {
+            width: 1004px;
+            margin: 0 auto;
+            flex: 1;
+            position: relative;
+            background-color: #31B3DC;
+        }
+        .toolbar {
+            width: 100%;
+            height: 79px;
+            background: url("./images/toolbar.png");
+            opacity: 0;
+        }
+        .bd5 {
+            width: 0px;
+            height: 25px;
+            position: absolute;
+            top: 32px;
+            left: 75px;
+            overflow: hidden;
+        }
+        .kuang {
+            width: 100%;
+            height: 25px;
+            border: 1px solid #fff;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        .bd1 {
+            width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.5);;
+            position: absolute;
+            left: 0;
+            top: 0px;
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        .bd2 {
+            width: 100%;
+            border-bottom: 1px solid rgba(255,255,255,0.5);;
+            position: absolute;
+            left: 0px;
+            bottom: 30px;
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        .bd3 {
+            height: 100%;
+            border-left: 1px solid rgba(255,255,255,0.5);;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        .bd4 {
+            height: 100%;
+            border-left: 1px solid rgba(255,255,255,0.5);;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .extra {
+            width: 394px;
+            height: 29px;
+            background: url("./images/extra.png");
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        /*第五屏动画*/
+        .current .bd1,
+        .current .bd2,
+        .current .bd3,
+        .current .bd4 {
+            transition: all 1s ease-in-out;
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+        .current .toolbar{
+            opacity: 1;
+            transition: all 1s 1s ease-in-out;
+        }
+        .current .bd5 {
+            transition: all 1s 1.5s ease-in-out;
+            width: 910px;
+        }
+    </style>
+</head>
+<body>
+<div id="fullpage">
+    <div class="section">
+        <div class="logo"></div>
+        <div class="text">
+            <img src="./images/text_1.png" alt=""/>
+            <img src="./images/text_2.png" alt=""/>
+            <img src="./images/text_3.png" alt=""/>
+            <img src="./images/text_4.png" alt=""/>
+            <img src="./images/text_5.png" alt=""/>
+            <img src="./images/text_6.png" alt=""/>
+            <img src="./images/text_7.png" alt=""/>
+            <img src="./images/text_8.png" alt=""/>
+        </div>
+        <div class="other"></div>
+    </div>
+    <div class="section">
+        <div class="main">
+            <div class="left">
+                <img src="./images/shield_1.png" alt=""/>
+                <img src="./images/shield_2.png" alt=""/>
+                <img src="./images/shield_3.png" alt=""/>
+                <img src="./images/shield_4.png" alt=""/>
+                <img src="./images/shield_5.png" alt=""/>
+                <img src="./images/shield_6.png" alt=""/>
+                <img src="./images/shield_7.png" alt=""/>
+                <img src="./images/shield_8.png" alt=""/>
+                <img src="./images/shield_9.png" alt=""/>
+            </div>
+            <div class="right"></div>
+        </div>
+    </div>
+    <div class="section third">
+        <div class="info"></div>
+        <div class="circle"></div>
+        <div class="rocket"></div>
+    </div>
+    <div class="section fourth">
+        <div class="input">
+            <div class="search">
+                <div class="s-text"></div>
+            </div>
+            <div class="box">
+                <div class="content"></div>
+            </div>
+        </div>
+        <div class="info2"></div>
+    </div>
+    <div class="section fifth">
+        <div class="info"></div>
+        <div class="lulanqi">
+            <div class="toolbar"></div>
+            <div class="extra"></div>
+            <div class="bd1"></div>
+            <div class="bd2"></div>
+            <div class="bd3"></div>
+            <div class="bd4"></div>
+            <div class="bd5">
+                <div class="kuang"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.fullPage.min.js"></script>
+<script>
+    $(function () {
+        $("#fullpage").fullpage(
+                {
+                    sectionsColor: ['#0da5d6', '#2AB561', '#DE8910', '#16BA9D', '#0DA5D6'],
+                    afterLoad: function (anchorLink, index) {
+                        $('.section').removeClass('current');
+
+                        // 延时100毫秒执行
+                        setTimeout(function () {
+                            $('.section').eq(index - 1).addClass('current');
+                        }, 100);
+                    }
+                }
+        );
+    })
+</script>
+</body>
+</html>
