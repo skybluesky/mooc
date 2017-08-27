@@ -13,11 +13,13 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^1.0.0-rc3"
+    "nuxt": "^1.0.0-rc3",
+    "vue-aplayer": "^0.1.1"
   },
   "devDependencies": {
     "axios": "^0.16.2",
     "babel-eslint": "^7.2.3",
+    "babel-plugin-component": "^0.10.0",
     "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",

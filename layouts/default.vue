@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <mt-header fixed title="fixed top"></mt-header>
+    <mt-header fixed title="skychen"></mt-header>
     <nuxt/>
-    <mt-tabbar>
-        <nuxt-link to="/">首 页1</nuxt-link>
-        <nuxt-link to="/music">首 页2</nuxt-link>
-        <nuxt-link to="/music">首 页3</nuxt-link>
-        <nuxt-link to="/">首 页4</nuxt-link>
+    <mt-tabbar fixed>
+        <nuxt-link to="/">
+          <img src="../static/iO1.jpg" alt="">
+          <p>综合</p>
+        </nuxt-link>
+        <nuxt-link to="/music">
+          <img src="../static/iO2.jpg" alt="">
+          <p>音乐</p>
+        </nuxt-link>
+        <nuxt-link to="/music">
+          <img src="../static/iO3.jpg" alt="">
+          <p>电影</p>
+        </nuxt-link>
     </mt-tabbar>
   </div>
 </template>
@@ -14,69 +22,27 @@
   export default {}
 </script>
 <style>
-html
-{
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-*, *:before, *:after
-{
-  box-sizing: border-box;
-  margin: 0;
-}
-.button--green
-{
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-.button--green:hover
-{
-  color: #fff;
-  background-color: #3b8070;
-}
-.button--grey
-{
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-.button--grey:hover
-{
-  color: #fff;
-  background-color: #35495e;
-}
-.mint-tabbar{
-  display: flex;
-  height: 80px;
-  background-color: #eee;
-}
+
   .mint-tabbar a{
     flex: 1;
     text-align: center;
-    line-height: 80px;
+    height: 100%;
     text-decoration: none;
+    background-color: #5fadc9;
+    padding: 0.1rem 0;
   }
-  #app {
-    padding-top: 50px;
-    padding-bottom:80px;
+  .mint-header {
+    height: 0.65rem;
   }
-  .mint-tabbar {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+  #app .mint-tabbar {
+    height: 1.2rem;
+  }
+  #app .mint-tabbar img {
+    width:0.7rem;
+    height: 0.7rem;
+    border-radius: 0.17rem;
+  }
+  #app .mint-tabbar p {
+
   }
 </style>
