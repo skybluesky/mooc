@@ -8,7 +8,7 @@ const store = () => new Vuex.Store({
 
   state: {
     a: 0,
-    url: 'http://47.94.16.170:3000',
+    url: 'http://127.0.0.1:3111',
     show:false,
     musiclist:[],
     music:[]

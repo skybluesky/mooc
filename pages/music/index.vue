@@ -2,30 +2,32 @@
     <div id="tmp1">
       <div v-for='(item,index) in list' class='item'>
         <span>{{item.name}}</span>
-        <em @click='addlist(item.id)'>添加</em>
+        <em @click='addlist(item.id,item.name)'>播放</em>
       </div>
-      <play></play>
+      <play :mid='obj'></play>
     </div>
-
 </template>
 <script>
-  import play from './play-btn.vue'
+  import play from '../aplay.vue'
     export default {
       data () {
         return {
           list: [],
           msrc:[],
-          src:''
+          obj:{}
         }
       },
       created () {
         this.getlist()
       },
       methods: {
-        addlist(id){
+        addlist(id,name){
           this.$ajax.get(`${this.url}/music/url?id=${id}`).then(e=>{
-              if(this.msrc.indexOf(e.data.data[0].url)==-1){
-                this.msrc.push(e.data.data[0].url)
+                let datas = e.data.data[0]
+              if(this.msrc.indexOf(datas)==-1){
+                  datas.name = name
+                this.obj = datas
+                this.msrc.push(datas)
               }
           })
           this.$store.dispatch('addlist',this.msrc)
@@ -34,10 +36,7 @@
           this.$ajax.get(`${this.url}/top/list?idx=1`).then(e=>{
               this.list = e.data.result.tracks.slice(0,20)
           })
-        },
-        play(){
-            this.src = this.msrc[0]
-        },
+        }
       },
       computed: {
         show () {

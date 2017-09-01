@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <mt-header fixed title="skychen"></mt-header>
-    <nuxt/>
+    <keep-alive>
+      <nuxt/>
+    </keep-alive>
     <mt-tabbar fixed>
         <nuxt-link to="/">
           <img src="../static/iO1.jpg" alt="">
@@ -11,7 +13,7 @@
           <img src="../static/iO2.jpg" alt="">
           <p>音乐</p>
         </nuxt-link>
-        <nuxt-link to="/music">
+        <nuxt-link to="/aplay">
           <img src="../static/iO3.jpg" alt="">
           <p>电影</p>
         </nuxt-link>
