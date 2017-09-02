@@ -22,18 +22,20 @@
       },
       methods: {
         addlist(id,name){
-          this.$ajax.get(`${this.url}/music/url?id=${id}`).then(e=>{
+          this.$ajax.get(`${this.$urls}/music/url?id=${id}`).then(e=>{
                 let datas = e.data.data[0]
               if(this.msrc.indexOf(datas)==-1){
                   datas.name = name
                 this.obj = datas
-                this.msrc.push(datas)
+                if(this.msrc.indexOf(datas)==-1){
+                  this.msrc.push(datas)
+                }
               }
           })
           this.$store.dispatch('addlist',this.msrc)
         },
         getlist(){
-          this.$ajax.get(`${this.url}/top/list?idx=1`).then(e=>{
+          this.$ajax.get(`${this.$urls}/top/list?idx=1`).then(e=>{
               this.list = e.data.result.tracks.slice(0,20)
           })
         }

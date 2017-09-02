@@ -2,5 +2,5 @@
  * Created by skychen on 2017/8/26.
  */
 export default {
-  url: 'http://172.20.10.3:3111'
+  url: 'http://192.168.10.10:3111'
 }

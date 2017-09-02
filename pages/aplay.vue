@@ -1,6 +1,7 @@
 <template>
   <div id="tmp1">
-    <div class='dw'>
+    <div class='show' @click='show()'></div>
+    <div class='dw' :style='{width:showw+"%"}'>
     <div class='bg'></div>
     <div class='mb'>
       <div class='lr'>
@@ -11,7 +12,7 @@
         </div>
       </div>
       <div class='rb'>
-        <div class='text' v-text='mid.name'></div>
+        <div class='text' v-text='src.name'></div>
         <div class='jdt'></div>
         <div class='jdt2' :style='{width:width+"%"}'></div>
         <div class='jdt3'></div>
@@ -20,12 +21,11 @@
       </span>
     </div>
     </div>
-    <audio :src="mid.url" ref='audios' id='audiosss'>
+    <audio :src="src.url" ref='audios' id='audiosss'>
     </audio>
   </div>
 </template>
 <script>
-  var au = document.querySelector('#audiosss')
   var timer
     export default {
       props:['mid'],
@@ -35,13 +35,16 @@
               cals:'play',
               cals2:'',
               isplay:false,
-              width:0
+              width:0,
+              nub:0,
+              showw:100,
             }
         },
         created() {
+          this.src = this.mid
         },
-      beforeUpdate(){
-      },
+        beforeUpdate(){
+        },
         methods: {
           play(){
               this.isplay = !this.isplay
@@ -53,7 +56,6 @@
           },
           stop(is,em){
             var _this = this
-            console.log(_this);
             var aus = document.querySelector('#audiosss')
             clearInterval(timer)
               if(is){
@@ -63,7 +65,6 @@
                         clearInterval(timer)
                       }
                     _this.width += 100/aus.duration
-                    console.log(_this.width);
                   },1000)
               }else {
                   clearInterval(timer)
@@ -79,6 +80,16 @@
               this.cals2 = ''
               this.$refs.audios.pause()
             }
+          },
+          next(){
+            this.nub++
+            var ml = this.music.length
+            this.src = this.music[this.nub%ml]
+          },
+          show(){
+            this.showw = this.showw==100?0:100;
+            this.isplay = true
+            this.playstutas()
           }
         },
         computed:{
@@ -93,6 +104,17 @@
 <style scoped>
   audio{
     width: 0;
+  }
+  .show {
+    width: 0.5rem;
+    height: 0.5rem;
+    position: fixed;
+    bottom: 1.5rem;
+    left: 0.1rem;
+    line-height: 0.5rem ;
+    border: 0.2rem solid #0dff89;
+    border-color: transparent transparent transparent #0dff89;
+    z-index: 55;
   }
   #tmp1 {
     padding-top: 0.65rem;
@@ -116,10 +138,10 @@
     border-color: transparent transparent transparent #00d8bf;
   }
   .dw {
-    width: 100%;
     position: fixed;
     bottom: 1.3rem;
     left: 0;
+    transition:all 1s;
   }
   .mb{
     position: absolute;
@@ -128,6 +150,7 @@
     height: 0.8rem;
     width: 90%;
     border-radius: 0.1rem ;
+    overflow: hidden;
   }
   .lr {
     width: 1.2rem;
